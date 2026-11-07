@@ -1,0 +1,25 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        
+        #Base case
+        if not root:
+            return 0
+
+        #find level of left subtree and right subtree and get their max
+
+        left = 1 + self.maxDepth(root.left)
+        right = 1 + self.maxDepth(root.right)
+
+        return max(left, right)
+
+# T: O(n) visits every node 
+# S: O(h) recursion stack grows with tree's height
+#         balanced tree: h = O(logn)
+#         skewed tree: h = O(n)
